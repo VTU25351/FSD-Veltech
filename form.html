@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Feedback Form</title>
+        <style>input:hover, textarea:hover{
+            border: 2px solid blue;
+        }
+        body{
+            align-content: center;
+            align-items: center;
+            
+        }
+    
+        h2{
+            margin-bottom: auto;
+            align-self: center;
+            background-color: burlywood;
+            border:none;
+            padding: 8px 16px;
+
+        }
+        #SubmitBtn{
+            background-color: green;
+            color: white;
+            border: none;
+            cursor: pointer;
+            padding: 8px 16px;
+        }
+        #SubmitBtn:hover{
+            background-color: darkgreen;
+        }
+        #Feedbackform{
+            background-color: antiquewhite;
+            color: rgb(0, 0, 0);
+            border: none;
+            cursor: pointer;
+            padding: 100px 200px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            align-items: center;
+        }
+        </style>
+    </head>
+    <body>
+        <h2>Feedback Form</h2>
+        <form id="Feedbackform">
+            <label>Name:</label>
+            <input type="text" id="Name" placeholder="Enter your Name"><br><br>
+            <label>Email:</label>
+            <input type="text" id="Email" placeholder="Enter your Email Address"><br><br>
+            <label>Feedback:</label>
+            <textarea id="Feedback" placeholder="Enter your feedback loser"></textarea><br><br>
+            <button type="button" id="SubmitBtn">Submit</button>
+        </form>
+        <script>
+            function validateName(Name){
+                return Name.length >2; 
+            }
+            function validateEmail(Email){
+                return Email.includes("@");
+            }
+            function validateFeedback (Feedback){
+                return Feedback.length >5;
+            }
+
+
+            document.getElementById("Name").addEventListener("keyup",function(){
+                this.style.border=validateName(this.value)? "2px solid Green":"2px solid red";
+            })
+            document.getElementById("Email").addEventListener("keyup",function(){
+                this.style.border=validateEmail(this.value)? "2px solid green":"2px solid red";
+            })
+            document.getElementById("Feedback").addEventListener("keyup",function(){
+                this.style.border=validateFeedback(this.value)? "2px solid green":"2px solid red";
+            })
+            document.getElementById("SubmitBtn").addEventListener("dblclick",function(){
+                event.preventDefault();
+                let Name=document.getElementById("Name").value;
+                let Email=document.getElementById("Email").value;
+                let Feedback=document.getElementById("Feedback").value;
+                if(validateName(Name) && validateEmail(Email) && validateFeedback(Feedback)){
+                    alert("Form Submitted");
+                }
+                    else
+                {
+                    alert("Fix the elements before submitting again");
+                }
+                
+            });
+
+
+        </script>
+    </body>
+</html>
+            
+
