@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Feedback Form</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background-color: #f4f4f4;
+            height: 100vh;
+            margin: 0;
+        }
+
+        h2 {
+            text-align: center;
+            background-color: burlywood;
+            padding: 10px;
+            margin-bottom: 20px;
+            border-radius: 5px;
+        }
+
+        #Feedbackform {
+            background-color: antiquewhite;
+            padding: 40px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+            width: 400px;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 5px;
+            font-weight: bold;
+        }
+
+        input, textarea {
+            width: 100%;
+            padding: 8px;
+            margin-bottom: 15px;
+            border: 2px solid #ccc;
+            border-radius: 4px;
+            transition: border 0.3s;
+        }
+
+        input:hover, textarea:hover {
+            border: 2px solid blue;
+        }
+
+        #SubmitBtn {
+            background-color: green;
+            color: white;
+            border: none;
+            cursor: pointer;
+            padding: 10px 20px;
+            border-radius: 4px;
+            font-size: 16px;
+        }
+
+        #SubmitBtn:hover {
+            background-color: darkgreen;
+        }
+    </style>
+</head>
+<body>
+    <form id="Feedbackform">
+        <h2>Feedback Form</h2>
+        <label for="Name">Name:</label>
+        <input type="text" id="Name" placeholder="Enter your Name">
+
+        <label for="Email">Email:</label>
+        <input type="text" id="Email" placeholder="Enter your Email Address">
+
+        <label for="Feedback">Feedback:</label>
+        <textarea id="Feedback" placeholder="Enter your feedback"></textarea>
+
+        <button type="submit" id="SubmitBtn">Submit</button>
+    </form>
+
+    <script>
+        function validateName(Name) {
+            return Name.trim().length > 2;
+        }
+
+        function validateEmail(Email) {
+            // Simple regex for email validation
+            return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(Email);
+        }
+
+        function validateFeedback(Feedback) {
+            return Feedback.trim().length > 5;
+        }
+
+        document.getElementById("Name").addEventListener("keyup", function () {
+            this.style.border = validateName(this.value) ? "2px solid green" : "2px solid red";
+        });
+
+        document.getElementById("Email").addEventListener("keyup", function () {
+            this.style.border = validateEmail(this.value) ? "2px solid green" : "2px solid red";
+        });
+
+        document.getElementById("Feedback").addEventListener("keyup", function () {
+            this.style.border = validateFeedback(this.value) ? "2px solid green" : "2px solid red";
+        });
+
+        document.getElementById("Feedbackform").addEventListener("submit", function (event) {
+            event.preventDefault();
+            let Name = document.getElementById("Name").value;
+            let Email = document.getElementById("Email").value;
+            let Feedback = document.getElementById("Feedback").value;
+
+            if (validateName(Name) && validateEmail(Email) && validateFeedback(Feedback)) {
+                alert("Form Submitted Successfully!");
+            } else {
+                alert("Please fix the highlighted fields before submitting.");
+            }
+        });
+    </script>
+</body>
+</html>
